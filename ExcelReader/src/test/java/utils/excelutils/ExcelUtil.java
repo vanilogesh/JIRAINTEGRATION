@@ -18,10 +18,10 @@ import static tests.BaseTest.testDataExcelFileName;
  */
 public class ExcelUtil {
     //Main Directory of the project
-    public static final String currentDir = System.getProperty("user.dir");
+   // public static final String currentDir = System.getProperty("user.dir");
 
     //Location of Test data excel file
-    public static String testDataExcelPath = null;
+    public static String testDataExcelPath =null;
 
     //Excel WorkBook
     private static XSSFWorkbook excelWBook;
@@ -62,14 +62,15 @@ public class ExcelUtil {
     // It creates FileInputStream and set excel file and excel sheet to excelWBook and excelWSheet variables.
     public static void setExcelFileSheet(String sheetName) {
         //MAC or Windows Selection for excel path
-        if (Platform.getCurrent().toString().equalsIgnoreCase("MAC")) {
-            testDataExcelPath = currentDir + "//src//test//java//resources//";
+      /*  if (Platform.getCurrent().toString().equalsIgnoreCase("MAC")) {
+            testDataExcelPath ="//src//test//java//resources//";
         } else if (Platform.getCurrent().toString().contains("WIN")) {
-            testDataExcelPath = currentDir + "\\src\\test\\java\\resources\\";
-        }
+            testDataExcelPath = "testdata.xlsx" + "\\src\\test\\java\\resources\\";
+        }*/
         try {
             // Open the Excel file
-            FileInputStream ExcelFile = new FileInputStream(testDataExcelPath + testDataExcelFileName);
+            //FileInputStream ExcelFile = new FileInputStream(testDataExcelPath + testDataExcelFileName);
+        	FileInputStream ExcelFile = new FileInputStream("C:\\Users\\Vani\\git\\repository\\ExcelReader\\src\\test\\java\\resources\\testdata.xlsx");
             excelWBook = new XSSFWorkbook(ExcelFile);
             excelWSheet = excelWBook.getSheet(sheetName);
         } catch (Exception e) {
@@ -116,7 +117,7 @@ public class ExcelUtil {
                 cell.setCellValue(value);
             }
             // Constant variables Test Data path and Test Data file name
-            FileOutputStream fileOut = new FileOutputStream(testDataExcelPath + testDataExcelFileName);
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Vani\\git\\repository\\ExcelReader\\src\\test\\java\\resources\\testdata.xlsx");
             excelWBook.write(fileOut);
             fileOut.flush();
             fileOut.close();
